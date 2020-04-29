@@ -1,0 +1,39 @@
+<!-- ============================================================== -->
+<!-- Profile - style you can find in header.scss -->
+<!-- ============================================================== -->
+<a href="https://wrappixel.com/templates/materialpro-angular-dashboard/" class=" m-r-20 hidden-sm-up" mat-raised-button
+   color="warn">Upgrade To Pro</a>
+<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5"><img [src]="photoURL$|async" alt="user"
+                                                                         class="profile-pic"></button>
+<mat-menu #profile="matMenu" class="mymegamenu">
+  <button mat-menu-item *ngIf="!(angularFireAuth.user|async) else logout;" (click)="signInWithGoogle()"
+          class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-google firebaseui-id-idp-button"
+          data-provider-id="google.com" style="background-color:#ffffff" data-upgraded=",MaterialButton"><span
+    class="firebaseui-idp-icon-wrapper">
+    <img class="firebaseui-idp-icon" alt=""
+         src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"></span>
+    <span class="firebaseui-idp-text firebaseui-idp-text-long">Sign in with Google</span>
+    <span class="firebaseui-idp-text firebaseui-idp-text-short">Google</span>
+  </button>
+  <ng-template #logout>
+    <button mat-menu-item  (click)="router.navigate(['account'])">
+      <mat-icon>account_box</mat-icon> Profile </button>
+    <button mat-menu-item (click)="angularFireAuth.signOut();">
+      <mat-icon>exit_to_app</mat-icon>
+      Sign Out
+    </button>
+  </ng-template>
+  <!--<button mat-menu-item>
+    <mat-icon>account_box</mat-icon>
+    Profile
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications_off</mat-icon>
+    Disable notifications
+  </button>
+  <button mat-menu-item>
+    <mat-icon>exit_to_app</mat-icon>
+    Sign Out
+  </button>-->
+</mat-menu>
+
